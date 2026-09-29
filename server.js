@@ -24,9 +24,12 @@ let requests = [
   }
 ];
 
-uygulama.get('/', (req, res) => {
-  app.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/api/requests', (req, res) => {
+  res.json(requests);
 });
 
 app.patch('/api/requests/:id', (req, res) => {
@@ -35,7 +38,9 @@ app.patch('/api/requests/:id', (req, res) => {
   );
 
   if (!item) {
-    return res.status(404).json({ error: 'Talep bulunamadı' });
+    return res.status(404).json({
+      error: 'Talep bulunamadı'
+    });
   }
 
   if (req.body.status) {
