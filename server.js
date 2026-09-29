@@ -24,8 +24,8 @@ let requests = [
   }
 ];
 
-app.get('/api/requests', (req, res) => {
-  res.json(requests);
+uygulama.get('/', (req, res) => {
+  res.sendFile(yol.join(__dirname, 'public', 'index.html'));
 });
 
 app.patch('/api/requests/:id', (req, res) => {
